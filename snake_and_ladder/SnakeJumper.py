@@ -1,12 +1,10 @@
 from Board import Board
 
 
-class SnakeJumper(Board):
-    def __init__(self, snake_start, snake_end, board_size):
-        super().__init__(board_size)
-        self.snake_start = snake_start
+class SnakeJumper:
+    def __init__(self, snake_start, snake_end, board_last_number):
         self.snake_end = snake_end
-        self.last_number = super().get_last_number()
+        self.last_number = board_last_number
         self.validate_snake_jumper()
 
     def validate_snake_jumper(self):

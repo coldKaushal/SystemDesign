@@ -1,12 +1,11 @@
 from Board import Board
 
 
-class LadderJumper(Board):
-    def __init__(self, ladder_start, ladder_end, board_size):
-        super().__init__(board_size)
+class LadderJumper:
+    def __init__(self, ladder_start, ladder_end, board_last_number):
         self.ladder_start = ladder_start
         self.ladder_end = ladder_end
-        self.last_number = super().get_last_number()
+        self.last_number = board_last_number
         self.validate_ladder_jumper()
 
     def validate_ladder_jumper(self):

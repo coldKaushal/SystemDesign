@@ -18,7 +18,7 @@ if __name__ == '__main__':
     print("Enter the board size")
     board_size = int(input())
     board = Board(board_size)
-
+    board_last_number = board.get_last_number()
     print(f"Board initialised, the game will start at 1 till {board_size*board_size}")
 
     print("initialising the Dice")
@@ -33,7 +33,7 @@ if __name__ == '__main__':
         print("Enter the snake start and end point, start point must be greater or equal to end point")
         snake_start = int(input())
         snake_end = int(input())
-        snake_jumper = SnakeJumper(snake_start, snake_end, board_size)
+        snake_jumper = SnakeJumper(snake_start, snake_end, board_last_number)
         snakes.append(snake_jumper)
 
     print(f"Initialising ladder, for demo adding 3 ladders")
@@ -42,7 +42,7 @@ if __name__ == '__main__':
         print("Enter the ladder start and end point, start point must be less than end point")
         ladder_start = int(input())
         ladder_end = int(input())
-        ladder_jumper = LadderJumper(ladder_start, ladder_end, board_size)
+        ladder_jumper = LadderJumper(ladder_start, ladder_end, board_last_number)
 
     print("Initialised snakes and ladders")
     print("Game starts")
