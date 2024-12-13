@@ -7,3 +7,4 @@
 4. At load it should load board, snake, ladder and dice.
 5. All player are at start position init
 
+Link: https://excalidraw.com/#json=tOca-kg-HJnIUvzKLoTvd,VmtOH6ZnvrwQO9-0b8T1uA
