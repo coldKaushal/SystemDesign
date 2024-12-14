@@ -1,24 +1,27 @@
+from typing import List
 from Player import Player
+
 from Board import Board
 if __name__ == "__main__":
     print("Starting the game")
-    print("Enter the name of player 1")
-    player_name = input()
-    print("Picked value for player 1 is X")
-    player1 = Player(player_name, 1)
-    print("Enter the name of player 2")
-    player_name = input()
-    print("Picked value for player 2 in O")
-    player2 = Player(player_name, -1)
+    print("Enter number of players")
+    num_of_players = int(input())
+    list_of_players: List[Player] = []
+    for i in range(num_of_players):
+        print(f"Enter name and player value for player {i}. Value must be greater than 0")
+        name_of_player = input()
+        value_of_player = int(input())
+        player = Player(name_of_player, value_of_player)
+        list_of_players.append(player)
 
     print("Enter the board size")
     board_size = int(input())
     Board = Board(board_size)
     print("Player 1 to start the game")
-    move = 1
+    current_player = 0
     while True:
-        print(f"Player {1 if move==1 else 2} to enter the move. Move must be between 1 and {Board.board_size}")
-        value = player1.player_value if move==1 else player2.player_value
+        print(f"Enter the move {list_of_players[current_player].player_name}")
+        value = list_of_players[i].player_value
         while True:
             x = int(input())
             y = int(input())
@@ -26,12 +29,13 @@ if __name__ == "__main__":
                 break
             print("Invalid Move, Retry..")
         if Board.check_for_game_completion():
-            print(f"Player {player1.player_name if move==1 else player2.player_name} wins the game")
+            print(f"{list_of_players[i].player_name} wins the game!")
             Board.print_final_board()
             break
         if Board.check_board_filled():
             print("Draw!")
             Board.print_final_board()
             break
-        move = -1 * move
+        current_player += 1
+        current_player = current_player%num_of_players
 

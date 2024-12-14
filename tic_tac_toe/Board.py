@@ -98,13 +98,4 @@ class Board:
         return True
     
     def print_final_board(self):
-        for row in self.board:
-            new_r = []
-            for x in row:
-                if x==1:
-                    new_r.append("X")
-                elif x==-1:
-                    new_r.append("O")
-                else:
-                    new_r.append(".")
-            print(new_r)
+        print(self.board)
