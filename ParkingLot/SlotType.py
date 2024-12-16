@@ -1,8 +1,9 @@
 from enum import Enum
 
 
-class VehicleType(Enum):
+class SlotType(Enum):
     CAR = "car"
-    TRUCK = "truck"
     BIKE = "bike"
+    TRUCK = "truck"
     BUS = "bus"
+

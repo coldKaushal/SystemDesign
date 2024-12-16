@@ -1,28 +1,42 @@
+import datetime
+
+from SlotType import SlotType
+from ParkingTicket import ParkingTicket
+from Bill import Bill
 
 class ParkingSlot:
-    def __init__(self, slot_id, parking_type: str):
+    def __init__(self, slot_id: str, slot_type: SlotType):
         self.__slot_id = slot_id
-        self.__parking_type = parking_type
+        self.__slot_type = slot_type
+        self.__is_available = True
+        self.__booking_time = None
         self.__vehicle_id = None
-        self.__booked_time = None
-        self.__is_occupied = False
-
-    def get_parking_type(self):
-        return self.__parking_type
 
     def get_slot_id(self):
         return self.__slot_id
 
+    def get_slot_type(self):
+        return self.__slot_type
+
     def check_availability(self):
-        return not self.__is_occupied
+        return self.__is_available
 
-    def book_parking_slot(self, vehicle_id, booked_time):
+    def book_slot(self, vehicle_id: str, booking_time: datetime.datetime, floor_number: int):
+        self.__is_available = False
         self.__vehicle_id = vehicle_id
-        self.__booked_time = booked_time
-        self.__is_occupied = True
+        self.__booking_time = booking_time
+        parking_ticket = ParkingTicket(vehicle_id, self.__slot_type, floor_number, self.__slot_id, booking_time)
+        return parking_ticket
 
-    def vacate_parking_slot(self):
-        self.__is_occupied = False
-        [vehicle_id, booked_time] = [self.__vehicle_id, self.__booked_time]
-        self.__vehicle_id, self.__booked_time = None, None
-        return [vehicle_id, booked_time]
+    def vacate_slot(self, parking_ticket: ParkingTicket):
+        self.__is_available = True
+        self.__booking_time = None
+        self.__vehicle_id = None
+        vehicle_id = parking_ticket.get_vehicle_id()
+        vehicle_type = parking_ticket.get_vehicle_type()
+        booking_time = parking_ticket.get_booking_time()
+        floor_number = parking_ticket.get_floor_number()
+        time = datetime.datetime.now()
+        bill = Bill(vehicle_id, vehicle_type, floor_number, self.__slot_id, booking_time, time)
+        return bill
+

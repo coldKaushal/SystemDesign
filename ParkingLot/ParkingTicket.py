@@ -1,7 +1,8 @@
-
+from SlotType import SlotType
+import datetime
 
 class ParkingTicket:
-    def __init__(self, vehicle_id, vehicle_type, floor_number, slot_id, booking_time):
+    def __init__(self, vehicle_id: str, vehicle_type: SlotType, floor_number: int, slot_id: str, booking_time: datetime.datetime):
         self.__vehicle_id = vehicle_id
         self.__vehicle_type = vehicle_type
         self.__floor_number = floor_number
@@ -22,5 +23,4 @@ class ParkingTicket:
 
     def get_booking_time(self):
         return self.__booking_time
-
 
