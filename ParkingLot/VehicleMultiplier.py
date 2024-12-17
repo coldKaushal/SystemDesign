@@ -1,7 +1,7 @@
 from SlotType import SlotType
 
 class VehicleMultiplier:
-    def get_multiplier(self, vehicle_type):
+    def get_multiplier(self, vehicle_type: SlotType):
         if vehicle_type == SlotType.CAR:
             return 20
         elif vehicle_type == SlotType.BIKE:
